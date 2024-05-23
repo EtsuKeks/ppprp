@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vrservice
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - gateway
+  http:
+  - match:
+    - uri:
+        exact: /time
+    route:
+    - destination:
+        host: service
+        port:
+          number: 80
+  - match:
+    - uri:
+        exact: /statistics
+    route:
+    - destination:
+        host: service
+        port:
+          number: 80
